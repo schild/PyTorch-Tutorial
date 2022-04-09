@@ -70,9 +70,7 @@ class RNN(nn.Module):
         # h_c shape (n_layers, batch, hidden_size)
         r_out, (h_n, h_c) = self.rnn(x, None)   # None represents zero initial hidden state
 
-        # choose r_out at the last time step
-        out = self.out(r_out[:, -1, :])
-        return out
+        return self.out(r_out[:, -1, :])
 
 
 rnn = RNN()

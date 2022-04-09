@@ -63,7 +63,7 @@ if __name__ == '__main__':
     # training
     for epoch in range(EPOCH):
         print('Epoch: ', epoch)
-        for step, (b_x, b_y) in enumerate(loader):          # for each training step
+        for b_x, b_y in loader:
             for net, opt, l_his in zip(nets, optimizers, losses_his):
                 output = net(b_x)              # get output for every net
                 loss = loss_func(output, b_y)  # compute loss for every net
