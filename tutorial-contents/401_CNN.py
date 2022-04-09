@@ -7,6 +7,7 @@ torch: 0.4
 torchvision
 matplotlib
 """
+
 # library
 # standard library
 import os
@@ -24,14 +25,7 @@ import matplotlib.pyplot as plt
 EPOCH = 1               # train the training data n times, to save time, we just train 1 epoch
 BATCH_SIZE = 50
 LR = 0.001              # learning rate
-DOWNLOAD_MNIST = False
-
-
-# Mnist digits dataset
-if not(os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
-    # not mnist dir or mnist is empyt dir
-    DOWNLOAD_MNIST = True
-
+DOWNLOAD_MNIST = not(os.path.exists('./mnist/')) or not os.listdir('./mnist/')
 train_data = torchvision.datasets.MNIST(
     root='./mnist/',
     train=True,                                     # this is training data

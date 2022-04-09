@@ -29,7 +29,7 @@ def save():
     optimizer = torch.optim.SGD(net1.parameters(), lr=0.5)
     loss_func = torch.nn.MSELoss()
 
-    for t in range(100):
+    for _ in range(100):
         prediction = net1(x)
         loss = loss_func(prediction, y)
         optimizer.zero_grad()

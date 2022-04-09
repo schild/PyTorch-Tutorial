@@ -37,9 +37,7 @@ class RNN(nn.Module):
         # r_out (batch, time_step, output_size)
         r_out, h_state = self.rnn(x, h_state)
 
-        outs = []                                   # this is where you can find torch is dynamic
-        for time_step in range(r_out.size(1)):      # calculate output for each time step
-            outs.append(self.out(r_out[:, time_step, :]))
+        outs = [self.out(r_out[:, time_step, :]) for time_step in range(r_out.size(1))]
         return torch.stack(outs, dim=1), h_state
 
 
@@ -64,14 +62,13 @@ plt.ion()   # continuously plot
 
 ################ dynamic time steps #########
 step = 0
-for i in range(60):
+for _ in range(60):
     dynamic_steps = np.random.randint(1, 4)  # has random time steps
     start, end = step * np.pi, (step + dynamic_steps) * np.pi  # different time steps length
     step += dynamic_steps
 
     # use sin predicts cos
     steps = np.linspace(start, end, 10 * dynamic_steps, dtype=np.float32)
-
 #######################  Above is different ###########################
 
     print(len(steps))       # print how many time step feed to RNN

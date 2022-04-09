@@ -47,9 +47,7 @@ class RNN(nn.Module):
         # r_out (batch, time_step, hidden_size)
         r_out, h_state = self.rnn(x, h_state)
 
-        outs = []    # save all predictions
-        for time_step in range(r_out.size(1)):    # calculate output for each time step
-            outs.append(self.out(r_out[:, time_step, :]))
+        outs = [self.out(r_out[:, time_step, :]) for time_step in range(r_out.size(1))]
         return torch.stack(outs, dim=1), h_state
 
         # instead, for simplicity, you can replace above codes by follows

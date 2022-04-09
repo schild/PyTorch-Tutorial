@@ -33,7 +33,7 @@ PAINT_POINTS = np.vstack([np.linspace(-1, 1, ART_COMPONENTS) for _ in range(BATC
 def artist_works_with_labels():     # painting from the famous artist (real target)
     a = np.random.uniform(1, 2, size=BATCH_SIZE)[:, np.newaxis]
     paintings = a * np.power(PAINT_POINTS, 2) + (a-1)
-    labels = (a-1) > 0.5            # upper paintings (1), lower paintings (0), two classes
+    labels = a > 1.5
     paintings = torch.from_numpy(paintings).float()
     labels = torch.from_numpy(labels.astype(np.float32))
     return paintings, labels
